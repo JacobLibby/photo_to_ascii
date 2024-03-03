@@ -13,7 +13,7 @@ This project has working bones, but is currently developed using p5's online Jav
 2) Install p5 JS library (https://github.com/processing/p5.js/releases/download/v1.9.1/p5.zip)
 3) Install and/or set up local server (https://github.com/processing/p5.js/wiki/Local-server)
 4) Run the repo on the local server and see the image set as `pic_path` as ASCII characters
-5) Move new images to the folder and update `pic_path` to play around with the code. Also adjust the ASCII characters used and the scaling and all other variables to really see how the code works!
+5) Move new images to the folder and update `pic_path` to play around with the code. Also adjust the ASCII characters used and the scaling and all other variables in the .css and .js files to really see how the code works! (Sizing down photos to <200x200 px worked best for me)
 
 
 
