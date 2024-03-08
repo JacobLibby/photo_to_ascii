@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 
 const UploadImage = (props) => {
   const [selectedImage, setSelectedImage] = useState(null);
-  if (selectedImage) {
-    props.setImage(selectedImage);
-  }
-  console.log(props.image);
+//   if (selectedImage) {
+//     props.setImage(selectedImage);
+//   }
+//   console.log(props.image);
 
 
   function toDataURL(url, callback) {
