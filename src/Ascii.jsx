@@ -4,13 +4,16 @@
 
 import * as React from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
+import UploadImage from "./UploadImage";
 
 function sketch(p5) {
   const density = "Ñ@#W$9876543210?!abc;:+=-,._  ";
   let pic;
-
+  let img;
   p5.preload = () => {
-    pic = p5.loadImage("obama_100.png");
+    img = window.localStorage.getItem("UPLOADED_IMAGE")
+    pic = p5.loadImage(img);
+    // pic = image
   };
 
   p5.setup = () => {
@@ -40,15 +43,15 @@ function sketch(p5) {
         if (c == " ") row += "&nbsp;";
         else row += c;
       }
-      var div = p5.createDiv(row)//.center('horizontal');
-      div.style('margin', '0')
-      div.style('padding', '0')
-      div.style('background-color', '#000')
-      div.style('font-family', 'Courier')
-      div.style('color', '#FFF')
-      div.style('font-size', '8pt')
-      div.style('line-height', '6pt')
-       
+      var div = p5.createDiv(row); //.center('horizontal');
+      div.style("margin", "0");
+      div.style("padding", "0");
+      div.style("background-color", "#000");
+      div.style("font-family", "Courier");
+      div.style("color", "#FFF");
+      div.style("font-size", "8pt");
+      div.style("line-height", "6pt");
+
       // console.log(row);
     }
   };
@@ -66,8 +69,17 @@ function sketch(p5) {
   //   };
 }
 
-export default function Ascii() {
-  return <ReactP5Wrapper sketch={sketch} />;
+export default function Ascii(props) {
+    console.log("props")
+    console.log(props)
+    console.log("props")
+  return (
+    <>
+    
+      {/* <UploadImage image={props.image} prop={props.prop}/> */}
+      {props.image && (<ReactP5Wrapper sketch={sketch}/>)}
+    </>
+  );
 }
 
 /*
