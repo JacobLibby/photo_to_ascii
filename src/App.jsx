@@ -27,13 +27,14 @@ export default function App() {
   //   xhr.send();
   // }
    
-  // useEffect(() => {
-  //   toDataURL(image, function(dataUrl) {
-  //     window.localStorage.setItem("UPLOADED_IMAGE", dataUrl);
-  //   })
-
+  useEffect(() => {
+    // toDataURL(image, function(dataUrl) {
+    //   window.localStorage.setItem("UPLOADED_IMAGE", dataUrl);
+    // })
+    console.log("IMAGE CHANGED")
+    console.log(image)
     
-  // }, [image]);
+  }, [image]);
 
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos));
