@@ -1,6 +1,14 @@
-# React + Vite
+# Photo To Ascii
+This is a full-stack web-app that will allow the user to upload an image and create a copy of the image made of ASCII characters.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Current Status
+The back-end of this project is fully functional and the React + Javascript + Vite front-end is nearing completion.
+
+
+
+
+
+# React + Vite
 
 Currently, two official plugins are available:
 
