@@ -5,6 +5,7 @@ import { TodoList } from "./TodoList";
 import Ascii from "./Ascii";
 import Sample from "./Sample";
 import UploadImage from "./UploadImage";
+import AsciiVideo from "./AsciiVideo";
 
 export default function App() {
   const [todos, setTodos] = useState(() => {
@@ -68,8 +69,9 @@ export default function App() {
 
   return (
     <>
-      <UploadImage image={image} setImage={setImage} />
-      <Ascii image={image} />
+      <AsciiVideo className="ascii-video"/>
+      {/* <UploadImage image={image} setImage={setImage} />
+      <Ascii image={image} /> */}
       {/* <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />

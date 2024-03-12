@@ -7,93 +7,53 @@ import { ReactP5Wrapper } from "@p5-wrapper/react";
 import UploadImage from "./UploadImage";
 import { useState, useEffect } from "react";
 
-function defineSketch(image) {
-    
-  return function sketch(p5) {
-    const density = "Ñ@#W$9876543210?!abc;:+=-,._  ";
-    let pic;
-    //   let img;
+function sketch(p5) {
+  // const density = "Ñ@#W$9876543210?!abc;:+=-,._   ";
+  // const density = " _.,-=+:;cba!?1723456908$W#@"
+  // const density = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~i!lI;:,"^`.  '
+  // const density = "%%%%#########********+++++++++=========--------:::      "
+  // const density = " .:-i|=+%O#@Ñ";
+  // const density = " .:-=+*#%@"
+  // const density = "  `.,:-~+=^*#MW&8%B@$"
+  // const density = '  .:░▒▓█'
+  const density = " .,:;xX&@"
 
-    p5.preload = () => {
-      //   console.log(image)
-      //   img = window.localStorage.getItem("UPLOADED_IMAGE")
-      // console.log("IMAGE FROM LOCAL: ", img)
+  let pic;
 
-      //   img = document.getElementById("imageid")
-      // console.log(img)
-      try {
-        pic = p5.loadImage(image);
-      } catch (e) {
-        pic = p5.loadImage("./obama_100.png");
+  let video;
+  let asciiDiv;
+
+  p5.setup = () => {
+    p5.noCanvas();
+    video = p5.createCapture(p5.VIDEO);
+    video.size(100, 100);
+    asciiDiv = p5.createDiv();
+  };
+  p5.draw = () => {
+    video.loadPixels();
+    let asciiImage = "";
+    for (let j = 0; j < video.height; j++) {
+      for (let i = 0; i < video.width; i++) {
+        const pixelIndex = (i + j * video.width) * 4;
+        const r = video.pixels[pixelIndex + 0];
+        const g = video.pixels[pixelIndex + 1];
+        const b = video.pixels[pixelIndex + 2];
+        const avg = (r + g + b) / 3;
+        // const avg = p5.brightness(r,g,b)
+        const len = density.length;
+        const charIndex = p5.floor(p5.map(avg, 0, 255,0, len));
+
+        const c = density.charAt(charIndex);
+        if (c == " ") asciiImage += "&nbsp;";
+        else asciiImage += c;
       }
-      // pic = p5.loadImage(img);
-      // pic = image
-    };
-
-    p5.setup = () => {
-      // console.log(image)
-      //   img = window.localStorage.getItem("UPLOADED_IMAGE")
-      // console.log("IMAGE FROM LOCAL: ", img)
-
-      //   img = document.getElementById("imageid")
-      // console.log(img)
-
-      // pic = p5.loadImage(img);
-      p5.noCanvas();
-      // }
-
-      // function draw() {
-      p5.background(0);
-      // image(pic, 0, 0, width, height);
-
-      // let w = width / pic.width;
-      // let h = height / pic.height;
-
-      pic.loadPixels();
-      for (let j = 0; j < pic.height; j++) {
-        let row = "";
-        for (let i = 0; i < pic.width; i++) {
-          const pixelIndex = (i + j * pic.width) * 4;
-          const r = pic.pixels[pixelIndex + 0];
-          const g = pic.pixels[pixelIndex + 1];
-          const b = pic.pixels[pixelIndex + 2];
-          const avg = (r + g + b) / 3;
-          const len = density.length;
-          const charIndex = p5.floor(p5.map(avg, 0, 255, len, 0));
-
-          const c = density.charAt(charIndex);
-          if (c == " ") row += "&nbsp;";
-          else row += c;
-        }
-        // var div = p5.createDiv(row); //.center('horizontal');
-        // div.style("margin", "0");
-        // div.style("padding", "0");
-        // div.style("background-color", "#000");
-        // div.style("font-family", "Courier");
-        // div.style("color", "#FFF");
-        // div.style("font-size", "8pt");
-        // div.style("line-height", "6pt");
-        p5.createDiv(row);
-        // console.log(row);
-      }
-    };
-    //   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-    //   p5.draw = () => {
-    //     p5.background(250);
-    //     p5.normalMaterial();
-    //     p5.push();
-    //     p5.rotateZ(p5.frameCount * 0.01);
-    //     p5.rotateX(p5.frameCount * 0.01);
-    //     p5.rotateY(p5.frameCount * 0.01);
-    //     p5.plane(100);
-    //     p5.pop();
-    //   };
-  }
-  
+      asciiImage += "<br>";
+    }
+    asciiDiv.html(asciiImage);
+  };
 }
 
-export default function Ascii(props) {
+export default function AsciiVideo(props) {
   // console.log("props")
   // console.log(props)
   // console.log("props")
@@ -117,7 +77,7 @@ export default function Ascii(props) {
     <>
       <h1 id="TEST">TEST</h1>
       {/* <UploadImage image={props.image} prop={props.prop}/> */}
-      {<ReactP5Wrapper sketch={defineSketch} image={props.image} />}
+      {<ReactP5Wrapper className="ascii-width" sketch={sketch} />}
     </>
   );
 }
