@@ -28,7 +28,7 @@ function sketch(p5) {
     // console.log(density)
     p5.noCanvas();
     video = p5.createCapture(p5.VIDEO);
-    video.size(100, 100);
+    video.size(150, 150);
     asciiDiv = p5.createDiv();
   };
   p5.draw = () => {
@@ -107,6 +107,7 @@ export default function AsciiVideo(props) {
           id="selection_brightness"
           value={selectedBrightness}
           onChange={(e) => setSelectedBrightness(e.target.value)}
+          className="font-normal"
         >
           <option value="avg">Averaging r,g,b values</option>
           <option value="brightness">P5.JS Brightness function</option>
@@ -141,7 +142,9 @@ export default function AsciiVideo(props) {
           
         </select>
       </label>
+      <div className="font-normal">
       {<ReactP5Wrapper className="ascii-width" sketch={sketch} />}
+      </div>
     </>
   );
 }

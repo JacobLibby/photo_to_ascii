@@ -1,5 +1,5 @@
 * {
-    font-family:  Courier, Arial, Helvetica, sans-serif;
+    /* font-family:  Courier, Arial, Helvetica, sans-serif; */
     box-sizing: border-box;
   }
   
@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     background-color: #000;
-    font-family: 'Courier';
+    font-family: 'Arial';
     color: #FFF;
     font-size: 10pt;
     line-height: 6pt;
@@ -21,6 +21,9 @@
     display: block;
   }
 
+  .font-normal {
+    font-family: 'Courier';
+  }
   .ascii-width{
     color: hsl(100, 60%, 30%);
   }
